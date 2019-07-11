@@ -24,14 +24,19 @@
                   </nav>
             <br>
               <div class="container jumbotron">
-                    <h1>제목: {{ appcrud.title }}</h1>
-                    <p>등록일: {{ appcrud.update_date }}</p>
-                    <p>내용: {{ appcrud.body }}</p>
-                    <a href="{% url 'home' %}" class="btn btn-outline-info" role="button" aria-pressed="true">홈으로</a>
-                    <a href="{% url 'edit' pk=appcrud.pk %}" class="btn btn-outline-warning" role="button" aria-pressed="true">수정하기</a>
-                    <a href="{% url 'delete' pk=appcrud.pk %}" class="btn btn-outline-danger" role="button" aria-pressed="true">삭제</a>
-
-                </div>
+                  <h1>제목: {{ appcrud.title }}</h1>
+                  <p>등록일: {{ appcrud.update_date }}</p>
+                  <p>내용: {{ appcrud.body }}</p>
+                  <a href="{% url 'home' %}" 
+                    class="btn btn-outline-info" 
+                    role="button" aria-pressed="true">홈으로</a>
+                  <a href="{% url 'edit' pk=appcrud.pk %}" 
+                    class="btn btn-outline-warning" 
+                    role="button" aria-pressed="true">수정하기</a>
+                  <a href="{% url 'delete' pk=appcrud.pk %}" 
+                    class="btn btn-outline-danger" 
+                    role="button" aria-pressed="true">삭제</a>
+              </div>
     
            
     </body>

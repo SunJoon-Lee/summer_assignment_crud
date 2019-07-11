@@ -35,7 +35,7 @@ def edit(request, pk):
             return redirect('home')
     else:
             form = AppcrudForm(instance =appcrud)
-            return render(request, 'edit.html',{'form' : form})
+            return render(request, 'edit.html',{'form':form})
 
 def delete(request, pk):
     appcrud =Appcrud.objects.get(id=pk)
