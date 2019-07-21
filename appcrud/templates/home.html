@@ -58,12 +58,13 @@
                         <a class="nav-item nav-link active" href="#">Home</a>
                       <a class="nav-item nav-link" href="#">Blog</a>
                       <a class="nav-item nav-link" href="#">수료증</a>
+					  
                           </div>
                   </div>
                   </div>
               </nav>
 
-             
+		<div class="container">	  		
 
 		<div class="banner">
 			<ul>
@@ -76,12 +77,19 @@
 		</div>
 
     <br>
-            <div class="container">
-            <br><br>
-                <a href="{% url 'post' %}" class="btn btn-outline-success" role="button" aria-pressed="true">글 작성</a>
+            
+            <br>
 
-            </div>
-        {% for appcrud in appcruds.all %}
+			<br>
+		
+			{% if user.is_authenticated %}
+		<h3>환영합니다. {{ user.username }} 님!</h3>
+		<a href="{% url 'post' %}" class="btn btn-outline-success" role="button" aria-pressed="true">글 작성</a>
+		<a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+        <form id="logout" method="POST" action="{% url 'logout' %}">
+            {% csrf_token %} <input type="hidden" />
+		</form>
+		{% for appcrud in appcruds.all %}
         <br>
             <div class="container">
                 <a href="{% url 'detail' appcrud.id %}">
@@ -91,8 +99,16 @@
                 <p>내용: {{ appcrud.summary }}</p>
                 <a href="{% url 'detail' appcrud.id %}" class="btn btn-outline-dark" role="button" aria-pressed="true">더보기</a>
                 <hr>
-                
-            </div>
+                <a href="{% url 'detail' appcrud.id %}">Comments: {{ appcrud.comments.count }}</a>
+		    <hr>
+			</div>
         {% endfor %}
+
+
+		{% else %}
+        <a href="{% url 'signup' %}" class="btn btn-outline-success" role="button" aria-pressed="true">회원가입</a>   
+		<a href="{% url 'login' %}" class="btn btn-outline-success" role="button" aria-pressed="true">로그인</a>  
+		{% endif %}
+	</div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import AppcrudForm
+from .forms import AppcrudForm, CommentForm
 from .models import Appcrud
 from django.utils import timezone
 
@@ -41,3 +41,14 @@ def delete(request, pk):
     appcrud =Appcrud.objects.get(id=pk)
     appcrud.delete()
     return redirect('home')
+
+def add_comment_to_post(request, pk):
+    appcrud = get_object_or_404(Appcrud, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.save()
+    else:
+        form = CommentForm()
+    return render(request, 'add_comment_to_post.html', {'form': form})
