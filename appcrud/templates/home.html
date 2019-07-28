@@ -83,7 +83,7 @@
 			<br>
 		
 			{% if user.is_authenticated %}
-		<h3>환영합니다. {{ user.username }} 님!</h3>
+		<h2>환영합니다. {{ user.username }} 님!</h2>
 		<a href="{% url 'post' %}" class="btn btn-outline-success" role="button" aria-pressed="true">글 작성</a>
 		<a href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
         <form id="logout" method="POST" action="{% url 'logout' %}">
